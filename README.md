@@ -19,8 +19,12 @@ glassmorphism, kinetic typography, and smooth 60fps motion.
   pill toggles.
 - **Motion** — scroll-reveal kinetic text, animated counters, parallax aura,
   card 3D tilt, cursor glow trail, and a stroked keyword marquee.
-- **Dual audience sections** — *For Enterprise Leaders* and *For Modern
-  Commerce & Tech Teams*.
+- **Real Royal Cyber content** — hero ("Transform Your Business with NextGen
+  Digital Solutions"), technology partners (Salesforce, Azure, AWS, ServiceNow,
+  …), service pillars, products/accelerators, industries, and company stats
+  (est. 2002, 800+ experts, 600+ clients, 1500+ projects).
+- **Dual audience sections** — *For Enterprise Leaders* and *For Commerce &
+  Tech Teams*.
 - **Kinetic footer** — glowing `hello@royalcyber.com`, social links, and giant
   gradient **ROYAL CYBER** brand typography.
 - Fully **responsive** with a mobile glass nav, and respects
