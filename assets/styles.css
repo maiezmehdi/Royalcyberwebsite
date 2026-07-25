@@ -870,3 +870,96 @@ a.pcard:hover .pcard__ic { border-color: var(--orange); }
   .ailab-cards { grid-template-columns: 1fr; }
   .footer__cols { grid-template-columns: 1fr; }
 }
+
+/* ══════════════════════════════════════════════════════════
+   FEATURED CASE STUDY (carousel)
+   ══════════════════════════════════════════════════════════ */
+.cs { position: relative; overflow: hidden; border-radius: var(--radius); }
+.cs__track { display: flex; transition: transform .6s var(--ease); }
+.cs__slide { min-width: 100%; }
+.cs__inner {
+  padding: clamp(36px, 6vw, 72px); text-align: center; display: grid; gap: 20px; justify-items: center;
+  background: linear-gradient(160deg, #0C355F 0%, #061423 70%);
+  border: 1px solid var(--line); border-radius: var(--radius);
+}
+[data-theme="light"] .cs__inner { border-color: rgba(20,60,105,.25); }
+.cs__logos { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; justify-content: center; color: #fff; opacity: .95; }
+.cs__logos span { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; display: inline-flex; align-items: center; gap: 8px; }
+.cs__logos .sep { width: 1px; height: 26px; background: rgba(255,255,255,.25); }
+.cs__logo-ic { width: 26px; height: 26px; border-radius: 6px; display: inline-grid; place-items: center;
+  background: conic-gradient(from 0deg, #f25022, #7fba00, #00a4ef, #ffb900, #f25022); }
+.cs__title { font-family: var(--font-display); font-weight: 800; color: #fff; letter-spacing: -.02em;
+  font-size: clamp(1.5rem, 3.4vw, 2.6rem); line-height: 1.1; max-width: 900px; }
+.cs__text { color: #c4d3e6; max-width: 760px; font-size: 1.05rem; }
+.cs__dots { display: flex; gap: 10px; justify-content: center; margin-top: 24px; }
+.cs__dot { width: 10px; height: 10px; border-radius: 50%; border: 0; cursor: pointer; padding: 0;
+  background: rgba(150,170,200,.35); transition: .3s; }
+.cs__dot.is-active { background: var(--orange); width: 26px; border-radius: 999px; }
+
+/* ══════════════════════════════════════════════════════════
+   CLIENT TESTIMONIALS
+   ══════════════════════════════════════════════════════════ */
+.testi { display: flex; flex-direction: column; gap: 18px; }
+.testi__stars { color: var(--orange); letter-spacing: 3px; font-size: .95rem; }
+.testi__quote { color: var(--ink); font-size: 1rem; line-height: 1.6; flex: 1; }
+.testi__by { display: flex; align-items: center; gap: 12px; }
+.testi__av { width: 46px; height: 46px; border-radius: 50%; flex: 0 0 auto; display: grid; place-items: center;
+  font-family: var(--font-display); font-weight: 800; color: #fff; font-size: .95rem;
+  background: linear-gradient(135deg, var(--purple), var(--violet-2)); }
+.testi__by b { display: block; font-size: .98rem; }
+.testi__by span { color: var(--muted); font-size: .84rem; }
+
+/* ══════════════════════════════════════════════════════════
+   MEGA-MENU (Who We Are)
+   ══════════════════════════════════════════════════════════ */
+.nav__item--drop { position: relative; display: inline-flex; }
+.nav__droptrigger {
+  background: none; border: 0; cursor: pointer; font-family: var(--font-body); font-size: 14.5px;
+  color: var(--muted); padding: 8px 14px; border-radius: 999px; display: inline-flex; align-items: center; gap: 6px;
+  transition: color .3s, background .3s;
+}
+.nav__item--drop:hover .nav__droptrigger, .nav__item--drop.is-open .nav__droptrigger { color: var(--ink); background: var(--glass); }
+.nav__droptrigger .chev { font-size: 9px; transition: transform .3s var(--ease); }
+.nav__item--drop:hover .chev, .nav__item--drop.is-open .chev { transform: rotate(180deg); }
+.megamenu {
+  position: absolute; top: calc(100% + 16px); left: 50%;
+  transform: translateX(-50%) translateY(10px); width: min(720px, 88vw);
+  opacity: 0; visibility: hidden; pointer-events: none; z-index: 120;
+  transition: opacity .3s var(--ease), transform .3s var(--ease);
+}
+.nav__item--drop:hover .megamenu, .nav__item--drop.is-open .megamenu {
+  opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(-50%) translateY(0);
+}
+.megamenu__inner {
+  display: grid; grid-template-columns: 1.05fr .75fr 1.25fr; gap: 26px; padding: 26px; border-radius: 20px;
+  background: rgba(9,14,22,.94); border: 1px solid var(--line);
+  backdrop-filter: blur(20px); box-shadow: 0 30px 70px rgba(0,0,0,.55);
+}
+[data-theme="light"] .megamenu__inner { background: rgba(255,255,255,.97); }
+.mega-col h4 { font-family: var(--font-display); font-weight: 700; margin-bottom: 12px; font-size: 1rem; }
+.mega-col p { color: var(--muted); font-size: .88rem; line-height: 1.55; }
+.mega-col ul { list-style: none; display: grid; gap: 10px; }
+.mega-col ul a { color: var(--muted); font-size: .92rem; display: inline-flex; align-items: center; gap: 7px; transition: color .3s; }
+.mega-col ul a::before { content: "›"; color: var(--orange); font-weight: 700; }
+.mega-col ul a:hover { color: var(--orange); }
+.mega-testi-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+.mega-testi-head b { font-family: var(--font-display); font-weight: 700; font-size: .95rem; }
+.mega-testi-head a { color: var(--orange); font-size: .82rem; }
+.mega-testi { background: var(--glass); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
+.mega-testi__by { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.mega-testi__by .testi__av { width: 40px; height: 40px; font-size: .85rem; }
+.mega-testi__by b { display: block; font-size: .88rem; }
+.mega-testi__by span { color: var(--muted); font-size: .76rem; }
+.mega-testi p { color: var(--muted); font-size: .84rem; line-height: 1.5; }
+
+@media (max-width: 900px) {
+  .nav__item--drop { display: block; width: 100%; }
+  .nav__droptrigger { width: 100%; justify-content: space-between; padding: 12px 14px; }
+  .megamenu { position: static; transform: none; width: 100%; opacity: 1; visibility: visible; pointer-events: auto;
+    max-height: 0; overflow: hidden; transition: max-height .4s var(--ease); }
+  .nav__item--drop.is-open .megamenu { max-height: 900px; }
+  .megamenu__inner { grid-template-columns: 1fr; box-shadow: none; padding: 16px; margin-top: 8px; }
+}
+@media (max-width: 760px) {
+  .testi { }
+}

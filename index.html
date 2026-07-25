@@ -66,8 +66,37 @@
     <nav class="nav__links" aria-label="Primary">
       <a href="#services">Services</a>
       <a href="#products">Products</a>
-      <a href="#ailab">AI Lab</a>
-      <a href="#success">Success</a>
+      <div class="nav__item nav__item--drop">
+        <button class="nav__droptrigger" id="whoTrigger" aria-expanded="false" aria-haspopup="true">Who We Are <span class="chev" aria-hidden="true">▾</span></button>
+        <div class="megamenu">
+          <div class="megamenu__inner glass">
+            <div class="mega-col">
+              <h4>Who We Are</h4>
+              <p>Royal Cyber Inc. is an IT Consulting &amp; Digital Transformation Company, specializing in Services, Solutions, and Software, with 1500+ projects delivered for 600+ clients worldwide.</p>
+            </div>
+            <div class="mega-col">
+              <h4>Company</h4>
+              <ul>
+                <li><a href="#why">About Us</a></li>
+                <li><a href="#">Awards</a></li>
+                <li><a href="#">Careers</a></li>
+                <li><a href="#partners">Partnership</a></li>
+                <li><a href="#">Training</a></li>
+              </ul>
+            </div>
+            <div class="mega-col">
+              <div class="mega-testi-head"><b>Client Testimonials</b><a href="#testimonials">View All →</a></div>
+              <div class="mega-testi">
+                <div class="mega-testi__by">
+                  <span class="testi__av">CM</span>
+                  <div><b>Craig McCroskey</b><span>Sr. Director IT · Aramark</span></div>
+                </div>
+                <p>"Congratulations and a big thank you to everyone that worked on the Portal 8.5 upgrade and successfully implemented. The team did a great job."</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <a href="#insights">Insights</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -377,6 +406,51 @@
       </div>
     </section>
 
+    <!-- ══════════════════  FEATURED CASE STUDY  ══════════════════ -->
+    <section class="section" id="casestudy">
+      <div class="cs" data-reveal>
+        <div class="cs__track" id="csTrack">
+          <div class="cs__slide">
+            <div class="cs__inner">
+              <div class="cs__logos">
+                <span><span class="cs__logo-ic"></span> Microsoft Solutions Partner</span>
+                <span class="sep"></span>
+                <span>The University of Chicago</span>
+              </div>
+              <h3 class="cs__title">University of Chicago accelerates secure generative AI adoption with Microsoft Azure</h3>
+              <p class="cs__text">In partnership with Royal Cyber, the University of Chicago launched a compliant, enterprise-ready generative AI platform serving more than 35,000 users in just six weeks.</p>
+              <a href="#contact" class="btn btn--primary">Read our Case Study <span class="arrow">→</span></a>
+            </div>
+          </div>
+          <div class="cs__slide">
+            <div class="cs__inner">
+              <div class="cs__logos">
+                <span><span class="cs__logo-ic"></span> Microsoft Azure</span>
+                <span class="sep"></span>
+                <span>Niagara Bottling</span>
+              </div>
+              <h3 class="cs__title">Niagara Bottling powers smarter manufacturing with Dimitri AI</h3>
+              <p class="cs__text">An Azure-powered AI platform delivers real-time operational intelligence across Niagara Bottling's plants — turning data into faster, smarter decisions.</p>
+              <a href="#contact" class="btn btn--primary">Read our Case Study <span class="arrow">→</span></a>
+            </div>
+          </div>
+          <div class="cs__slide">
+            <div class="cs__inner">
+              <div class="cs__logos">
+                <span>commercetools</span>
+                <span class="sep"></span>
+                <span>Wild Fork Foods</span>
+              </div>
+              <h3 class="cs__title">Wild Fork Foods speeds service with a commercetools accelerator</h3>
+              <p class="cs__text">A centralized Customer Service Accelerator delivered 45% faster copilot performance and 80% faster data lookup for support teams.</p>
+              <a href="#contact" class="btn btn--primary">Read our Case Study <span class="arrow">→</span></a>
+            </div>
+          </div>
+        </div>
+        <div class="cs__dots" id="csDots" role="tablist" aria-label="Case studies"></div>
+      </div>
+    </section>
+
     <!-- ══════════════════  CUSTOMER SUCCESS  ══════════════════ -->
     <section class="section" id="success">
       <div class="section__head">
@@ -402,6 +476,43 @@
           <span class="success__tag">D2C eCommerce</span>
           <h3 class="card__title">Rich Products Corporation</h3>
           <p class="card__text">D2C e-Commerce transformation with commercetools and Salesforce Commerce.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ══════════════════  CLIENT TESTIMONIALS  ══════════════════ -->
+    <section class="section" id="testimonials">
+      <div class="ins-head">
+        <div class="ins-head__l">
+          <span class="eyebrow" data-reveal>Client Testimonials</span>
+          <h2 class="section__title" data-reveal>What our <em>clients say</em></h2>
+        </div>
+        <a href="#" class="btn btn--ghost" data-reveal>View All <span class="arrow">→</span></a>
+      </div>
+      <div class="cardgrid" style="grid-template-columns:repeat(3,1fr);">
+        <article class="card glass tilt testi" data-reveal>
+          <span class="testi__stars">★★★★★</span>
+          <p class="testi__quote">"Congratulations and a big thank you to everyone that worked on the Portal 8.5 Version upgrade and successfully implemented. The team did a great job working through all the tasks that came up — hats off to everyone that worked on this project."</p>
+          <div class="testi__by">
+            <span class="testi__av">CM</span>
+            <div><b>Craig McCroskey</b><span>Sr. Director IT · Aramark</span></div>
+          </div>
+        </article>
+        <article class="card glass tilt testi" data-reveal>
+          <span class="testi__stars">★★★★★</span>
+          <p class="testi__quote">"Royal Cyber's team brought deep commerce expertise and moved fast. They modernized our platform without disrupting the business, and the results spoke for themselves within the first quarter."</p>
+          <div class="testi__by">
+            <span class="testi__av">DR</span>
+            <div><b>Director of Digital</b><span>Global Retail Brand</span></div>
+          </div>
+        </article>
+        <article class="card glass tilt testi" data-reveal>
+          <span class="testi__stars">★★★★★</span>
+          <p class="testi__quote">"From AI strategy to production, Royal Cyber has been a true partner. Their guardrails and governance gave our leadership the confidence to scale generative AI across the enterprise."</p>
+          <div class="testi__by">
+            <span class="testi__av">VP</span>
+            <div><b>VP, Enterprise Technology</b><span>Financial Services</span></div>
+          </div>
         </article>
       </div>
     </section>

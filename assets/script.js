@@ -112,6 +112,48 @@
     });
   }
 
+  /* ══════════════  WHO WE ARE MEGA-MENU (click / touch)  ══════════════ */
+  const whoTrigger = $('#whoTrigger');
+  if (whoTrigger) {
+    const item = whoTrigger.closest('.nav__item--drop');
+    whoTrigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const open = item.classList.toggle('is-open');
+      whoTrigger.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('click', (e) => {
+      if (!item.contains(e.target)) { item.classList.remove('is-open'); whoTrigger.setAttribute('aria-expanded', 'false'); }
+    });
+    $$('.megamenu a', item).forEach((a) => a.addEventListener('click', () => {
+      item.classList.remove('is-open');
+      if (nav) { nav.classList.remove('is-open'); if (burger) burger.classList.remove('is-open'); }
+    }));
+  }
+
+  /* ══════════════  FEATURED CASE STUDY CAROUSEL  ══════════════ */
+  const csTrack = $('#csTrack');
+  const csDots = $('#csDots');
+  if (csTrack && csDots) {
+    const slides = $$('.cs__slide', csTrack);
+    let idx = 0, timer = null;
+    slides.forEach((_, i) => {
+      const d = document.createElement('button');
+      d.className = 'cs__dot' + (i === 0 ? ' is-active' : '');
+      d.setAttribute('role', 'tab');
+      d.setAttribute('aria-label', 'Case study ' + (i + 1));
+      d.addEventListener('click', () => { go(i); restart(); });
+      csDots.appendChild(d);
+    });
+    const dots = $$('.cs__dot', csDots);
+    const go = (i) => {
+      idx = (i + slides.length) % slides.length;
+      csTrack.style.transform = `translateX(-${idx * 100}%)`;
+      dots.forEach((d, j) => d.classList.toggle('is-active', j === idx));
+    };
+    const restart = () => { if (reduce) return; clearInterval(timer); timer = setInterval(() => go(idx + 1), 6000); };
+    restart();
+  }
+
   /* ══════════════  COOKIE CONSENT  ══════════════ */
   const cookie = $('#cookie');
   if (cookie) {
