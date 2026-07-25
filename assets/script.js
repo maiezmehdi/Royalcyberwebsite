@@ -50,7 +50,22 @@
       }
     });
   };
-  if (!reduce) $$('.hero__title .line').forEach((l) => { splitWords(l); l.classList.add('kinetic'); });
+  if (!reduce) $$('.hero__title .line:not(.line--rotate)').forEach((l) => { splitWords(l); l.classList.add('kinetic'); });
+
+  /* ── rotating headline phrase ── */
+  const rotator = $('#rotator');
+  if (rotator && !reduce) {
+    const phrases = ['NextGen Digital Solutions', 'Cloud. Modernization. Scale.', 'AI That Drives Impact'];
+    let ri = 0;
+    setInterval(() => {
+      rotator.classList.add('is-out');
+      setTimeout(() => {
+        ri = (ri + 1) % phrases.length;
+        rotator.textContent = phrases[ri];
+        rotator.classList.remove('is-out');
+      }, 500);
+    }, 3200);
+  }
 
   /* ══════════════  SCROLL REVEAL  ══════════════ */
   const io = new IntersectionObserver((entries) => {
@@ -107,14 +122,17 @@
 
   /* ══════════════  ANIMATED COUNTERS  ══════════════ */
   const runCount = (el) => {
-    const target = parseFloat(el.dataset.count);
+    const raw = el.dataset.count;
+    const target = parseFloat(raw);
     const suffix = el.dataset.suffix || '';
-    if (reduce) { el.textContent = target.toLocaleString() + suffix; return; }
+    const decimals = (raw.split('.')[1] || '').length;
+    const fmt = (v) => v.toLocaleString(undefined, { minimumFractionDigits: decimals, maximumFractionDigits: decimals });
+    if (reduce) { el.textContent = fmt(target) + suffix; return; }
     const dur = 1700, start = performance.now();
     const step = (now) => {
       const p = Math.min((now - start) / dur, 1);
       const eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(target * eased).toLocaleString() + suffix;
+      el.textContent = fmt(target * eased) + suffix;
       if (p < 1) requestAnimationFrame(step);
     };
     requestAnimationFrame(step);
