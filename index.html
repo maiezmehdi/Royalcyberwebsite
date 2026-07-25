@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0B0B0E" />
+  <title>Royal Cyber — Accelerate Your Digital Enterprise</title>
+  <meta name="description" content="Royal Cyber leverages Generative AI, Cloud Acceleration, and Digital Commerce to transform complex challenges into measurable success." />
+
+  <!-- Fonts: Syne (geometric display) + Fraunces (italic serif accent) + Inter (body) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Fraunces:ital,opsz,wght@1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+
+  <!-- ══════════════════  INTRO LOADER  ══════════════════ -->
+  <div class="intro" id="intro" aria-hidden="true">
+    <div class="intro__geo">
+      <svg viewBox="0 0 200 200" class="intro__svg" role="img" aria-label="Royal Cyber loading">
+        <defs>
+          <radialGradient id="introGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#a78bfa" />
+            <stop offset="55%" stop-color="#5B21B6" />
+            <stop offset="100%" stop-color="#2E1065" />
+          </radialGradient>
+        </defs>
+        <!-- Sacred geometry ring of nodes -->
+        <g class="intro__nodes" stroke="url(#introGlow)" stroke-width="1" fill="none">
+          <circle cx="100" cy="100" r="70" opacity="0.35" />
+          <circle cx="100" cy="100" r="48" opacity="0.55" />
+          <polygon points="100,30 160,135 40,135" opacity="0.5" />
+          <polygon points="100,170 40,65 160,65" opacity="0.5" />
+        </g>
+        <circle cx="100" cy="100" r="18" fill="url(#introGlow)" class="intro__core" />
+      </svg>
+    </div>
+    <div class="intro__word">ROYAL CYBER</div>
+  </div>
+
+  <!-- ══════════════════  AMBIENT BACKGROUND  ══════════════════ -->
+  <div class="aura" aria-hidden="true">
+    <span class="aura__blob aura__blob--1"></span>
+    <span class="aura__blob aura__blob--2"></span>
+    <span class="aura__blob aura__blob--3"></span>
+    <div class="aura__grid"></div>
+  </div>
+  <div class="cursor-trail" id="cursorTrail" aria-hidden="true"></div>
+
+  <!-- ══════════════════  NAV  ══════════════════ -->
+  <header class="nav" id="nav">
+    <a href="#top" class="nav__brand" aria-label="Royal Cyber home">
+      <span class="nav__logo" aria-hidden="true"></span>
+      Royal&nbsp;Cyber
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#solutions">Solutions</a>
+      <a href="#solutions">AI &amp; Cloud</a>
+      <a href="#innovation">Innovation</a>
+      <a href="#insights">Insights</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="#contact" class="btn btn--primary nav__cta">Talk to an Expert</a>
+    <button class="nav__burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+  </header>
+
+  <main id="top">
+
+    <!-- ══════════════════  HERO  ══════════════════ -->
+    <section class="hero" id="hero">
+      <div class="hero__inner">
+        <span class="pill-tag reveal" data-reveal>
+          <span class="pill-tag__dot"></span> Generative AI · Cloud · Digital Commerce
+        </span>
+
+        <h1 class="hero__title">
+          <span class="line" data-reveal>Accelerate Your</span>
+          <span class="line" data-reveal>Digital <em>Enterprise</em></span>
+        </h1>
+
+        <p class="hero__sub reveal" data-reveal>
+          Royal Cyber leverages Generative AI, Cloud Acceleration, and Digital
+          Commerce to transform complex challenges into measurable success.
+        </p>
+
+        <div class="hero__cta reveal" data-reveal>
+          <a href="#solutions" class="btn btn--primary">Explore Solutions</a>
+          <a href="#contact" class="btn btn--ghost">Talk to an Expert</a>
+        </div>
+
+        <div class="hero__stats reveal" data-reveal>
+          <div class="hero__stat"><b data-count="380" data-suffix="%+">0</b><span>Avg. Growth</span></div>
+          <div class="hero__stat"><b data-count="2000" data-suffix="+">0</b><span>Global Experts</span></div>
+          <div class="hero__stat"><b data-count="600" data-suffix="+">0</b><span>Global Clients</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════  BENTO FEATURE GRID  ══════════════════ -->
+    <section class="section" id="solutions">
+      <div class="section__head">
+        <span class="eyebrow" data-reveal>Solutions</span>
+        <h2 class="section__title" data-reveal>Architect the <em>future</em> of enterprise</h2>
+        <p class="section__lead" data-reveal>
+          A modular platform of AI, cloud, and commerce capabilities — engineered
+          to move from proof-of-concept to production impact.
+        </p>
+      </div>
+
+      <div class="bento">
+        <!-- Card 1 -->
+        <article class="card card--tall glass tilt" data-reveal>
+          <div class="card__badge">+94% Efficiency</div>
+          <h3 class="card__title">Generative AI Adoption</h3>
+          <p class="card__text">From readiness to deployed intelligence — a guided path to enterprise-grade GenAI.</p>
+          <ul class="card__list">
+            <li>AI Readiness Assessment</li>
+            <li>Proof of Concept</li>
+            <li>Automated Workflows</li>
+          </ul>
+          <div class="toggles" role="group" aria-label="Capabilities">
+            <button class="toggle is-on" data-toggle><span></span>Automation</button>
+            <button class="toggle is-on" data-toggle><span></span>Guardrails</button>
+            <button class="toggle" data-toggle><span></span>Fine-tune</button>
+          </div>
+        </article>
+
+        <!-- Card 2 -->
+        <article class="card glass tilt" data-reveal>
+          <div class="card__badge card__badge--alt">+82% Automation</div>
+          <h3 class="card__title">Cloud &amp; Commerce Modernization</h3>
+          <p class="card__text">Scalable, secure infrastructure powering headless, always-on commerce.</p>
+          <ul class="card__list">
+            <li>Scalable Cloud Infrastructure</li>
+            <li>Headless E-commerce</li>
+          </ul>
+        </article>
+
+        <!-- Card 3 : live chart -->
+        <article class="card card--wide glass tilt" data-reveal>
+          <div class="card__row">
+            <div>
+              <div class="card__badge">Real-time Cloud Analytics</div>
+              <h3 class="card__title">Enterprise AI Platform</h3>
+              <p class="card__text">Meet <b>Dimitri</b> — your AI assistant orchestrating intelligent automation across the stack.</p>
+            </div>
+            <div class="avatar" aria-hidden="true">
+              <span class="avatar__ring"></span>
+              <span class="avatar__face">◕‿◕</span>
+              <span class="avatar__name">Dimitri&nbsp;AI</span>
+            </div>
+          </div>
+          <div class="chart" data-chart aria-label="Live performance chart">
+            <svg viewBox="0 0 520 160" preserveAspectRatio="none" class="chart__svg">
+              <defs>
+                <linearGradient id="chartFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.45" />
+                  <stop offset="100%" stop-color="#8b5cf6" stop-opacity="0" />
+                </linearGradient>
+                <linearGradient id="chartLine" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#7c3aed" />
+                  <stop offset="100%" stop-color="#c4b5fd" />
+                </linearGradient>
+              </defs>
+              <path class="chart__area" fill="url(#chartFill)" />
+              <path class="chart__line" fill="none" stroke="url(#chartLine)" stroke-width="2.5" stroke-linecap="round" />
+              <circle class="chart__dot" r="4" fill="#fff" />
+            </svg>
+            <div class="chart__legend">
+              <span><i style="background:#a78bfa"></i>Throughput</span>
+              <span class="chart__live"><i></i>Live</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Card 4 : results -->
+        <article class="card glass tilt card--accent" data-reveal>
+          <h3 class="card__title">Results-Oriented Impact</h3>
+          <div class="metrics">
+            <div class="metric"><b data-count="380" data-suffix="%+">0</b><span>Growth</span></div>
+            <div class="metric"><b data-count="2000" data-suffix="+">0</b><span>Global Experts</span></div>
+            <div class="metric"><b data-count="600" data-suffix="+">0</b><span>Global Clients</span></div>
+          </div>
+          <p class="card__text">Measurable outcomes, delivered at enterprise scale across every engagement.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ══════════════════  DUAL AUDIENCE  ══════════════════ -->
+    <section class="section split" id="innovation">
+      <div class="split__col glass tilt" data-reveal>
+        <span class="eyebrow">For Enterprise Leaders</span>
+        <h3 class="split__title">Drive AI <em>innovation</em> with confidence</h3>
+        <p class="split__text">Turn strategy into secure, governed intelligence — from the boardroom to production.</p>
+        <ul class="feature-list">
+          <li><span class="feature-list__ic">✦</span>Drive AI Innovation</li>
+          <li><span class="feature-list__ic">✦</span>Enterprise Cloud Security</li>
+          <li><span class="feature-list__ic">✦</span>Intelligent Automation</li>
+        </ul>
+        <a href="#contact" class="btn btn--ghost">Book a strategy call</a>
+      </div>
+
+      <div class="split__col glass tilt" data-reveal>
+        <span class="eyebrow eyebrow--alt">For Modern Commerce &amp; Tech Teams</span>
+        <h3 class="split__title">Scale digital <em>experience</em> without limits</h3>
+        <p class="split__text">Composable, headless commerce and developer-first tooling that ships fast and stays fast.</p>
+        <ul class="feature-list">
+          <li><span class="feature-list__ic">✦</span>Scale Digital Experience</li>
+          <li><span class="feature-list__ic">✦</span>Headless Commerce Solutions</li>
+          <li><span class="feature-list__ic">✦</span>Composable Architecture</li>
+        </ul>
+        <a href="#contact" class="btn btn--ghost">Explore for teams</a>
+      </div>
+    </section>
+
+    <!-- ══════════════════  ABOUT / INSIGHTS STRIP  ══════════════════ -->
+    <section class="section marquee-section" id="insights" aria-hidden="false">
+      <div class="marquee" data-reveal>
+        <div class="marquee__track">
+          <span>Generative AI</span><span>·</span><span>Cloud Acceleration</span><span>·</span>
+          <span>Digital Commerce</span><span>·</span><span>Automation</span><span>·</span>
+          <span>Data &amp; Analytics</span><span>·</span><span>DevOps</span><span>·</span>
+          <span>Generative AI</span><span>·</span><span>Cloud Acceleration</span><span>·</span>
+          <span>Digital Commerce</span><span>·</span><span>Automation</span><span>·</span>
+          <span>Data &amp; Analytics</span><span>·</span><span>DevOps</span><span>·</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════  CTA  ══════════════════ -->
+    <section class="section cta-band" id="about">
+      <div class="cta-band__inner glass" data-reveal>
+        <h2 class="section__title">Ready to <em>accelerate?</em></h2>
+        <p class="section__lead">Let's architect your measurable digital future — together.</p>
+        <a href="#contact" class="btn btn--primary btn--lg">Talk to an Expert</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ══════════════════  FOOTER  ══════════════════ -->
+  <footer class="footer" id="contact">
+    <div class="footer__top">
+      <div class="footer__contact">
+        <span class="eyebrow">Say hello</span>
+        <a href="mailto:hello@royalcyber.com" class="footer__mail">hello@royalcyber.com</a>
+      </div>
+      <nav class="footer__social" aria-label="Social">
+        <a href="#" aria-label="LinkedIn"><span>in</span>LinkedIn</a>
+        <a href="#" aria-label="X"><span>✕</span>X</a>
+        <a href="#" aria-label="YouTube"><span>▶</span>YouTube</a>
+      </nav>
+    </div>
+    <div class="footer__brand" aria-hidden="true">
+      <span data-reveal>ROYAL</span>
+      <span data-reveal>CYBER</span>
+    </div>
+    <div class="footer__legal">
+      <span>© <span id="year"></span> Royal Cyber. All rights reserved.</span>
+      <span>Architecting the future of enterprise.</span>
+    </div>
+  </footer>
+
+  <script src="assets/script.js"></script>
+</body>
+</html>
