@@ -676,13 +676,11 @@ a.pcard:hover .pcard__ic { border-color: var(--orange); }
 .quote__author span { display: block; color: var(--muted); font-weight: 500; font-size: .9rem; margin-top: 4px; }
 .quote__by { display: flex; align-items: center; justify-content: center; gap: 14px; margin-top: 6px; }
 .quote__by .quote__author { text-align: left; }
-.quote__avatar { width: 60px; height: 60px; border-radius: 50%; overflow: hidden; flex: 0 0 auto;
-  display: grid; place-items: center; box-shadow: 0 8px 24px rgba(0,0,0,.35); }
-.quote__avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.quote__avatar-fallback {
-  width: 60px; height: 60px; border-radius: 50%; display: grid; place-items: center;
-  font-family: var(--font-display); font-weight: 800; color: #fff; font-size: 1.2rem;
-  background: linear-gradient(135deg, var(--orange-lt), var(--orange));
+.quote__avatar {
+  width: 62px; height: 62px; border-radius: 50%; flex: 0 0 auto; display: grid; place-items: center;
+  font-family: var(--font-display); font-weight: 800; font-size: 1.3rem; color: #fff; letter-spacing: .02em;
+  background: linear-gradient(135deg, var(--purple), var(--violet-2));
+  border: 2px solid var(--orange); box-shadow: 0 8px 24px rgba(0,0,0,.35), 0 0 0 4px rgba(232,115,28,.12);
 }
 
 /* events */
@@ -782,15 +780,13 @@ a.pcard:hover .pcard__ic { border-color: var(--orange); }
 .ailab__sub { font-family: var(--font-display); font-weight: 700; font-size: 1.3rem; margin: 24px 0 16px; }
 .ailab-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 24px; }
 .ailab-card {
-  padding: 22px 14px; border-radius: 16px; display: grid; gap: 12px; justify-items: center; text-align: center;
-  background: linear-gradient(160deg, var(--violet), var(--violet-2)); border: 1px solid var(--line);
-  transition: transform .35s var(--ease), box-shadow .35s var(--ease);
+  padding: 24px 16px; border-radius: 16px; display: grid; gap: 12px; justify-items: center; text-align: center;
+  transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s;
 }
-[data-theme="light"] .ailab-card { background: linear-gradient(160deg, #0C355F, #061C33); }
-.ailab-card:hover { transform: translateY(-5px); box-shadow: 0 18px 40px rgba(12,53,95,.4); }
-.ailab-card__ic { width: 42px; height: 42px; }
-.ailab-card__ic svg { width: 100%; height: 100%; fill: none; stroke: #fff; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.ailab-card span { font-family: var(--font-display); font-weight: 700; font-size: .95rem; color: #fff; line-height: 1.25; }
+.ailab-card:hover { transform: translateY(-5px); border-color: var(--orange); box-shadow: 0 22px 46px rgba(0,0,0,.35); }
+.ailab-card__ic { width: 42px; height: 42px; position: relative; z-index: 1; }
+.ailab-card__ic svg { width: 100%; height: 100%; fill: none; stroke: var(--orange); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ailab-card span { font-family: var(--font-display); font-weight: 700; font-size: .95rem; color: var(--ink); line-height: 1.25; position: relative; z-index: 1; }
 .ailab-card .spark { fill: var(--orange-lt); stroke: none; transform-box: fill-box; transform-origin: center; animation: pulse 2.2s ease-in-out infinite; }
 .ailab-card .cog { transform-box: fill-box; transform-origin: center; animation: spin 9s linear infinite; }
 
@@ -879,18 +875,19 @@ a.pcard:hover .pcard__ic { border-color: var(--orange); }
 .cs__slide { min-width: 100%; }
 .cs__inner {
   padding: clamp(36px, 6vw, 72px); text-align: center; display: grid; gap: 20px; justify-items: center;
-  background: linear-gradient(160deg, #0C355F 0%, #061423 70%);
+  background: linear-gradient(160deg, var(--glass), var(--glass-2));
   border: 1px solid var(--line); border-radius: var(--radius);
+  backdrop-filter: blur(20px) saturate(140%);
+  box-shadow: 0 20px 60px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
 }
-[data-theme="light"] .cs__inner { border-color: rgba(20,60,105,.25); }
-.cs__logos { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; justify-content: center; color: #fff; opacity: .95; }
+.cs__logos { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; justify-content: center; color: var(--ink); }
 .cs__logos span { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; display: inline-flex; align-items: center; gap: 8px; }
-.cs__logos .sep { width: 1px; height: 26px; background: rgba(255,255,255,.25); }
+.cs__logos .sep { width: 1px; height: 26px; background: var(--line); }
 .cs__logo-ic { width: 26px; height: 26px; border-radius: 6px; display: inline-grid; place-items: center;
   background: conic-gradient(from 0deg, #f25022, #7fba00, #00a4ef, #ffb900, #f25022); }
-.cs__title { font-family: var(--font-display); font-weight: 800; color: #fff; letter-spacing: -.02em;
+.cs__title { font-family: var(--font-display); font-weight: 800; color: var(--ink); letter-spacing: -.02em;
   font-size: clamp(1.5rem, 3.4vw, 2.6rem); line-height: 1.1; max-width: 900px; }
-.cs__text { color: #c4d3e6; max-width: 760px; font-size: 1.05rem; }
+.cs__text { color: var(--muted); max-width: 760px; font-size: 1.05rem; }
 .cs__dots { display: flex; gap: 10px; justify-content: center; margin-top: 24px; }
 .cs__dot { width: 10px; height: 10px; border-radius: 50%; border: 0; cursor: pointer; padding: 0;
   background: rgba(150,170,200,.35); transition: .3s; }

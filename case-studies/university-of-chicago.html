@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#05080E" />
+  <title>University of Chicago × Microsoft Azure — Case Study | Royal Cyber</title>
+  <meta name="description" content="How Royal Cyber helped the University of Chicago launch a compliant, enterprise-ready generative AI platform on Microsoft Azure for 35,000+ users in six weeks." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/styles.css" />
+  <script>try{if(localStorage.getItem('rc-theme')==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}</script>
+</head>
+<body>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="aura" aria-hidden="true">
+    <span class="aura__blob aura__blob--1"></span>
+    <span class="aura__blob aura__blob--2"></span>
+    <span class="aura__blob aura__blob--3"></span>
+    <div class="aura__grid" data-speed="0.12"></div>
+  </div>
+  <div class="cursor-trail" id="cursorTrail" aria-hidden="true"></div>
+
+  <header class="nav" id="nav">
+    <a href="../index.html" class="nav__brand" aria-label="Royal Cyber home">
+      <span class="nav__logo" aria-hidden="true"></span> Royal&nbsp;Cyber
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="../index.html#services">Services</a>
+      <a href="../index.html#products">Products</a>
+      <a href="../index.html#why">Who We Are</a>
+      <a href="../index.html#insights">Insights</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light and dark mode" title="Toggle theme">
+      <svg class="t-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      <svg class="t-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5.6 5.6 4.2 4.2M19.8 19.8l-1.4-1.4M18.4 5.6l1.4-1.4M4.2 19.8l1.4-1.4"/></svg>
+    </button>
+    <a href="#contact" class="btn btn--primary nav__cta">Talk to an Expert</a>
+    <button class="nav__burger" id="burger" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span></button>
+  </header>
+
+  <main id="top">
+    <section class="section phero">
+      <div>
+        <a href="../index.html#casestudy" class="back-link">← All case studies</a>
+        <span class="eyebrow" data-reveal>Case Study · Higher Education</span>
+        <h1 class="phero__title" data-reveal>University of Chicago accelerates secure GenAI with <em>Microsoft Azure</em></h1>
+        <p class="phero__sub" data-reveal>
+          In partnership with Royal Cyber, the University of Chicago launched a compliant,
+          enterprise-ready generative AI platform serving more than 35,000 users in just six weeks.
+        </p>
+        <div class="cs__logos" style="justify-content:flex-start;margin-bottom:26px;" data-reveal>
+          <span><span class="cs__logo-ic"></span> Microsoft Solutions Partner</span>
+          <span class="sep"></span>
+          <span>The University of Chicago</span>
+        </div>
+        <div class="hero__cta phero__cta" data-reveal>
+          <a href="#contact" class="btn btn--primary">Talk to an Expert</a>
+          <a href="../index.html#casestudy" class="btn btn--ghost">More Case Studies</a>
+        </div>
+      </div>
+      <div class="phero__art" data-reveal>
+        <div class="phero__badge glass">
+          <div style="text-align:center;position:relative;z-index:1;">
+            <div style="font-family:var(--font-display);font-weight:800;font-size:clamp(2.6rem,7vw,4rem);color:var(--orange);line-height:1;">35K+</div>
+            <div style="color:var(--muted);margin-top:8px;letter-spacing:.05em;">USERS IN 6 WEEKS</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="results" style="padding-top:40px;">
+      <div class="section__head">
+        <span class="eyebrow" data-reveal>The Results</span>
+        <h2 class="section__title" data-reveal>Impact that <em>scaled fast</em></h2>
+      </div>
+      <div class="cardgrid">
+        <div class="mcard glass" data-reveal><b data-count="35000" data-suffix="+">0</b><span class="mlabel">Users Served</span><span class="mdesc">Students, faculty &amp; staff</span></div>
+        <div class="mcard glass" data-reveal><b data-count="6" data-suffix=" wks">0</b><span class="mlabel">To Launch</span><span class="mdesc">Idea to production platform</span></div>
+        <div class="mcard glass" data-reveal><b data-count="100" data-suffix="%">0</b><span class="mlabel">Compliant &amp; Secure</span><span class="mdesc">Governed, auditable access</span></div>
+        <div class="mcard glass" data-reveal><b>Azure</b><span class="mlabel">OpenAI Powered</span><span class="mdesc">Enterprise-grade foundation</span></div>
+      </div>
+    </section>
+
+    <section class="section" id="story">
+      <div class="cardgrid" style="grid-template-columns:repeat(3,1fr);">
+        <article class="card glass tilt" data-reveal>
+          <span class="success__tag">The Challenge</span>
+          <h3 class="card__title">Secure AI, no compromises</h3>
+          <p class="card__text">The university needed to give its community access to generative AI without exposing sensitive data or violating institutional policy — and it needed to move quickly.</p>
+        </article>
+        <article class="card glass tilt" data-reveal>
+          <span class="success__tag">The Solution</span>
+          <h3 class="card__title">Enterprise GenAI on Azure</h3>
+          <p class="card__text">Royal Cyber architected a compliant platform on Microsoft Azure — identity integration, governance, guardrails, and Azure OpenAI at the core — built for scale from day one.</p>
+        </article>
+        <article class="card glass tilt" data-reveal>
+          <span class="success__tag">The Outcome</span>
+          <h3 class="card__title">Live in six weeks</h3>
+          <p class="card__text">A production platform serving 35,000+ users with full compliance, auditability, and headroom to grow — delivered in just six weeks.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="why">
+      <div class="quote glass" data-reveal>
+        <div class="quote__mark">“</div>
+        <p class="quote__text">Royal Cyber gave us the confidence to put generative AI in the hands of our entire community — securely, and remarkably fast.</p>
+        <div class="quote__by">
+          <span class="quote__avatar" aria-hidden="true">UC</span>
+          <span class="quote__author">Technology Leadership<span>University of Chicago</span></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section cta-band">
+      <div class="cta-band__inner glass" data-reveal>
+        <h2 class="section__title">Ready to <em>accelerate your AI adoption?</em></h2>
+        <p class="section__lead">Let's architect a secure, compliant path to production.</p>
+        <a href="#contact" class="btn btn--primary btn--lg">Talk to an Expert</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer" id="contact">
+    <div class="footer__top" style="display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;margin-bottom:40px;">
+      <div class="footer__contact">
+        <span class="eyebrow">Say hello</span>
+        <a href="mailto:hello@royalcyber.com" class="footer__mail">hello@royalcyber.com</a>
+      </div>
+      <nav class="footer__social" aria-label="Social">
+        <a href="#" aria-label="LinkedIn"><span>in</span>LinkedIn</a>
+        <a href="#" aria-label="X"><span>✕</span>X</a>
+        <a href="#" aria-label="YouTube"><span>▶</span>YouTube</a>
+      </nav>
+    </div>
+    <div class="footer__brand" aria-hidden="true"><span data-reveal>ROYAL</span><span data-reveal>CYBER</span></div>
+    <div class="footer__legal">
+      <span>Copyright © <span id="year"></span> Royal Cyber Inc. All Rights Reserved.</span>
+      <span>Naperville, IL · Global Delivery</span>
+    </div>
+  </footer>
+
+  <script src="../assets/script.js"></script>
+</body>
+</html>
