@@ -16,12 +16,9 @@
     const intro = $('#intro');
     if (!intro) { document.body.classList.add('is-ready'); return; }
     setTimeout(() => {
-      intro.classList.add('is-morph');            // liquid mesh morph
-      setTimeout(() => {
-        intro.classList.add('is-done');
-        document.body.classList.add('is-ready');
-      }, reduce ? 100 : 700);
-    }, reduce ? 150 : 2200);
+      intro.classList.add('is-done');
+      document.body.classList.add('is-ready');
+    }, reduce ? 150 : 1900);
   });
 
   /* ── year ── */

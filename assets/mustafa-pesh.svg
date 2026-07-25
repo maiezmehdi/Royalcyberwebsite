@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120" role="img" aria-label="Mustafa Pesh">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1C5C97"/>
+      <stop offset="1" stop-color="#0C355F"/>
+    </linearGradient>
+    <clipPath id="clip"><circle cx="60" cy="60" r="60"/></clipPath>
+  </defs>
+  <g clip-path="url(#clip)">
+    <rect width="120" height="120" fill="url(#bg)"/>
+    <circle cx="60" cy="48" r="21" fill="#EAF2FB" opacity="0.94"/>
+    <path d="M18 118 a42 36 0 0 1 84 0 Z" fill="#EAF2FB" opacity="0.94"/>
+  </g>
+  <circle cx="60" cy="60" r="58" fill="none" stroke="#F79340" stroke-width="3"/>
+</svg>
