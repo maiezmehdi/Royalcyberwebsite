@@ -112,6 +112,22 @@
     });
   }
 
+  /* ══════════════  COOKIE CONSENT  ══════════════ */
+  const cookie = $('#cookie');
+  if (cookie) {
+    let choice = null;
+    try { choice = localStorage.getItem('rc-cookie'); } catch (e) {}
+    if (!choice) {
+      setTimeout(() => cookie.classList.add('is-in'), 1400);
+    }
+    $$('[data-cookie]', cookie).forEach((btn) =>
+      btn.addEventListener('click', () => {
+        try { localStorage.setItem('rc-cookie', btn.dataset.cookie); } catch (e) {}
+        cookie.classList.remove('is-in');
+      })
+    );
+  }
+
   /* ══════════════  TOGGLES  ══════════════ */
   $$('[data-toggle]').forEach((t) =>
     t.addEventListener('click', () => t.classList.toggle('is-on'))
