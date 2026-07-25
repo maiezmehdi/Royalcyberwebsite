@@ -89,6 +89,17 @@
     );
   }
 
+  /* ══════════════  THEME TOGGLE (light / dark)  ══════════════ */
+  const themeBtn = $('#themeToggle');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+      const root = document.documentElement;
+      const toLight = root.getAttribute('data-theme') !== 'light';
+      root.setAttribute('data-theme', toLight ? 'light' : 'dark');
+      try { localStorage.setItem('rc-theme', toLight ? 'light' : 'dark'); } catch (e) {}
+    });
+  }
+
   /* ══════════════  TOGGLES  ══════════════ */
   $$('[data-toggle]').forEach((t) =>
     t.addEventListener('click', () => t.classList.toggle('is-on'))

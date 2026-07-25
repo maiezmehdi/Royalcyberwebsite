@@ -494,3 +494,152 @@ a { color: inherit; text-decoration: none; }
   [data-reveal] { opacity: 1; transform: none; }
   html { scroll-behavior: auto; }
 }
+
+/* ══════════════════════════════════════════════════════════
+   THEME TOGGLE
+   ══════════════════════════════════════════════════════════ */
+.theme-toggle {
+  width: 40px; height: 40px; flex: 0 0 auto; border-radius: 50%; cursor: pointer;
+  display: grid; place-items: center; position: relative;
+  background: var(--glass); border: 1px solid var(--line); color: var(--ink);
+  transition: transform .3s var(--ease), border-color .3s, background .3s;
+}
+.theme-toggle:hover { transform: translateY(-2px) rotate(12deg); border-color: var(--orange); }
+.theme-toggle svg { width: 19px; height: 19px; position: absolute; transition: opacity .35s var(--ease), transform .45s var(--ease); }
+.theme-toggle .t-moon { opacity: 1; transform: none; }
+.theme-toggle .t-sun  { opacity: 0; transform: rotate(-90deg) scale(.4); }
+[data-theme="light"] .theme-toggle .t-moon { opacity: 0; transform: rotate(90deg) scale(.4); }
+[data-theme="light"] .theme-toggle .t-sun  { opacity: 1; transform: none; }
+
+/* ══════════════════════════════════════════════════════════
+   LIGHT THEME
+   ══════════════════════════════════════════════════════════ */
+[data-theme="light"] {
+  --bg:        #EDF2F9;
+  --bg-soft:   #FFFFFF;
+  --violet:    #BBD3EE;
+  --violet-2:  #D6E6F6;
+  --purple:    #1C5C97;
+  --purple-lt: #2E6BA8;
+  --lilac:     #2F72AE;
+  --ink:       #0C1E33;
+  --muted:     #566579;
+  --line:      rgba(20,60,105,0.14);
+  --glass:     rgba(255,255,255,0.62);
+  --glass-2:   rgba(206,224,244,0.45);
+}
+[data-theme="light"] body { background:
+  radial-gradient(1200px 600px at 50% -10%, #E3EDF8 0%, transparent 60%), var(--bg); }
+[data-theme="light"] .intro { background: radial-gradient(circle at 50% 45%, #DCE8F6 0%, var(--bg) 70%); }
+[data-theme="light"] .aura__blob { opacity: .38; filter: blur(100px); }
+[data-theme="light"] .aura__grid { opacity: .55; }
+[data-theme="light"] .cursor-trail { background: radial-gradient(circle, rgba(28,92,151,.12), transparent 60%); }
+[data-theme="light"] .nav { background: rgba(255,255,255,.72); box-shadow: 0 10px 40px rgba(20,50,90,.12); }
+[data-theme="light"] .nav.is-scrolled { background: rgba(255,255,255,.9); box-shadow: 0 12px 45px rgba(28,92,151,.16); }
+[data-theme="light"] .glass { box-shadow: 0 20px 50px rgba(30,70,120,.12), inset 0 1px 0 rgba(255,255,255,.7); }
+[data-theme="light"] .glass::before { background: linear-gradient(130deg, rgba(255,255,255,.5), transparent 40%); }
+[data-theme="light"] .hero__stat b,
+[data-theme="light"] .metric b,
+[data-theme="light"] .footer__mail {
+  background: linear-gradient(120deg, var(--ink), var(--purple));
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+[data-theme="light"] .card__list li { color: #33465c; }
+[data-theme="light"] .feature-list li { color: #2c3e54; }
+[data-theme="light"] .card__badge { color: #9a4a10; }
+[data-theme="light"] .card__badge--alt { color: #17548c; }
+[data-theme="light"] .toggle span { background: rgba(20,50,90,.16); }
+[data-theme="light"] .marquee__track span { -webkit-text-stroke: 1px rgba(28,92,151,.4); }
+[data-theme="light"] .marquee__track span:nth-child(even) { -webkit-text-stroke: 1px rgba(232,115,28,.55); }
+[data-theme="light"] .footer__brand span {
+  background: linear-gradient(180deg, var(--purple) 0%, #2E6BA8 48%, rgba(120,160,200,.55) 100%);
+  -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+}
+[data-theme="light"] .logos span { color: var(--muted); }
+[data-theme="light"] ::-webkit-scrollbar-track { background: var(--bg); }
+
+/* ══════════════════════════════════════════════════════════
+   ANIMATED PRODUCT ICONS (motion graphics)
+   ══════════════════════════════════════════════════════════ */
+.picon { width: 30px; height: 30px; display: block; overflow: visible; }
+.picon [fill="none"], .picon .stroke { fill: none; stroke: var(--orange); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.picon .fillp { fill: var(--orange); }
+.picon .fillb { fill: var(--purple-lt); }
+.picon .strokeb { fill: none; stroke: var(--purple-lt); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+
+/* draw-in when icon tile enters */
+.picon .draw { stroke-dasharray: 180; stroke-dashoffset: 180; animation: picon-draw 1.1s var(--ease) forwards; }
+@keyframes picon-draw { to { stroke-dashoffset: 0; } }
+
+/* 1 — chat dots */
+.picon--chat .d { animation: chatdot 1.4s ease-in-out infinite; }
+.picon--chat .d2 { animation-delay: .2s; }
+.picon--chat .d3 { animation-delay: .4s; }
+@keyframes chatdot { 0%,100% { opacity: .3; transform: translateY(1.5px); } 50% { opacity: 1; transform: translateY(-1.5px); } }
+
+/* 2 — grad cap tassel swing */
+.picon--cap .tassel { transform-origin: 42px 20px; animation: swing 3s ease-in-out infinite; }
+@keyframes swing { 0%,100% { transform: rotate(-10deg); } 50% { transform: rotate(10deg); } }
+
+/* 3 — flask bubbles */
+.picon--flask .bub { animation: bubble 2.2s ease-in infinite; opacity: 0; }
+.picon--flask .bub2 { animation-delay: .7s; }
+.picon--flask .bub3 { animation-delay: 1.3s; }
+@keyframes bubble { 0% { opacity: 0; transform: translateY(4px); } 30% { opacity: 1; } 100% { opacity: 0; transform: translateY(-10px); } }
+
+/* 4 — spinning gear */
+.picon--gear .gear { transform-origin: 24px 24px; animation: spin 8s linear infinite; }
+.picon--gear .core { animation: pulse 2s ease-in-out infinite; transform-origin: 24px 24px; }
+
+/* clickable product card */
+a.pcard { text-decoration: none; color: inherit; cursor: pointer; }
+.pcard__more {
+  margin-top: auto; font-weight: 600; font-size: .92rem; color: var(--orange);
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.pcard__more span { transition: transform .35s var(--ease); }
+a.pcard:hover .pcard__more span { transform: translateX(6px); }
+a.pcard:hover .pcard__ic { border-color: var(--orange); }
+
+/* ══════════════════════════════════════════════════════════
+   PRODUCT INTERIOR PAGES
+   ══════════════════════════════════════════════════════════ */
+.back-link {
+  display: flex; width: fit-content; align-items: center; gap: 8px; font-size: 14px; color: var(--muted);
+  margin-bottom: 22px; transition: color .3s, gap .3s;
+}
+.back-link:hover { color: var(--orange); gap: 12px; }
+
+.phero { display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items: center;
+  padding-top: 160px; }
+.phero__title { font-family: var(--font-display); font-weight: 800; letter-spacing: -.02em;
+  font-size: clamp(2.3rem, 5.5vw, 4rem); line-height: 1.03; }
+.phero__sub { color: var(--muted); font-size: 1.15rem; margin: 20px 0 28px; max-width: 560px; }
+.phero__art { display: grid; place-items: center; }
+.phero__badge {
+  width: min(320px, 80%); aspect-ratio: 1; border-radius: 30px; display: grid; place-items: center;
+  background: linear-gradient(160deg, rgba(232,115,28,.16), rgba(28,92,151,.14));
+  border: 1px solid var(--line); position: relative; overflow: hidden;
+}
+.phero__badge::after { content: ""; position: absolute; inset: -40%;
+  background: radial-gradient(circle at 50% 40%, rgba(232,115,28,.25), transparent 55%); animation: pulse 4s ease-in-out infinite; }
+.picon--lg { width: 120px; height: 120px; position: relative; z-index: 1; }
+.picon--lg [fill="none"], .picon--lg .stroke, .picon--lg .strokeb { stroke-width: 2; }
+
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; counter-reset: step; }
+.step { padding: 30px; display: grid; gap: 10px; align-content: start; }
+.step__n {
+  width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center;
+  font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; color: #fff;
+  background: linear-gradient(135deg, var(--orange-lt), var(--orange));
+  box-shadow: 0 8px 24px rgba(232,115,28,.35);
+}
+.step__t { font-family: var(--font-display); font-weight: 700; font-size: 1.2rem; }
+
+@media (max-width: 900px) {
+  .phero { grid-template-columns: 1fr; text-align: center; padding-top: 140px; }
+  .phero__sub { margin-inline: auto; }
+  .phero__cta { justify-content: center; }
+  .phero__art { order: -1; }
+  .steps { grid-template-columns: 1fr; }
+}

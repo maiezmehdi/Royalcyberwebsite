@@ -30,15 +30,27 @@ glassmorphism, kinetic typography, and smooth 60fps motion.
   Tech Teams*.
 - **Kinetic footer** — glowing `hello@royalcyber.com`, social links, and giant
   gradient **ROYAL CYBER** brand typography.
+- **Light & dark mode** — a nav toggle (sun/moon) switches themes, persisted in
+  `localStorage` and applied before paint to avoid flashes; works across all pages.
+- **Animated product icons** — the Products section uses hand-built animated SVG
+  motion-graphic icons (chat, cap, flask, gear) instead of emoji.
+- **Dedicated product pages** — each product card links to its own interior page
+  (`products/*.html`) with a tailored hero, capabilities, "how it works" steps,
+  and CTA, sharing the same design system and motion.
 - Fully **responsive** with a mobile glass nav, and respects
   `prefers-reduced-motion`.
 
 ## 🗂 Structure
 
 ```
-index.html          # markup for all sections
-assets/styles.css   # design system, glassmorphism, animations, responsive
-assets/script.js    # reveal, counters, live chart, tilt, nav, cursor trail
+index.html                     # homepage
+products/                      # product interior pages
+  conversational-ai-assistant.html
+  ai-digital-campus.html
+  low-code-ai-testing.html
+  product-data-config-management.html
+assets/styles.css              # design system, themes, animations, responsive
+assets/script.js               # motion, theme toggle, live chart, interactions
 ```
 
 ## 🚀 Run
