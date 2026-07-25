@@ -5,49 +5,75 @@
   'use strict';
 
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const fine   = window.matchMedia('(pointer:fine)').matches;
   const $  = (s, c = document) => c.querySelector(s);
   const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
+  const lerp = (a, b, n) => a + (b - a) * n;
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 
-  /* ── Intro loader ── */
+  /* ══════════════  INTRO LOADER  ══════════════ */
   window.addEventListener('load', () => {
     const intro = $('#intro');
-    if (!intro) return;
+    if (!intro) { document.body.classList.add('is-ready'); return; }
     setTimeout(() => {
-      intro.classList.add('is-done');
-      document.body.classList.add('is-ready');
-    }, reduce ? 200 : 2600);
+      intro.classList.add('is-morph');            // liquid mesh morph
+      setTimeout(() => {
+        intro.classList.add('is-done');
+        document.body.classList.add('is-ready');
+      }, reduce ? 100 : 700);
+    }, reduce ? 150 : 2200);
   });
 
-  /* ── Current year ── */
+  /* ── year ── */
   const y = $('#year'); if (y) y.textContent = new Date().getFullYear();
 
-  /* ── Scroll reveal ── */
+  /* ══════════════  KINETIC TYPOGRAPHY (split words)  ══════════════ */
+  // Wraps each word in a masked span so it can slide up on reveal.
+  const splitWords = (line) => {
+    const nodes = Array.from(line.childNodes);
+    line.textContent = '';
+    let idx = 0;
+    nodes.forEach((node) => {
+      if (node.nodeType === 3) {
+        node.textContent.split(/(\s+)/).forEach((tok) => {
+          if (!tok.trim()) { line.appendChild(document.createTextNode(tok)); return; }
+          const w = document.createElement('span'); w.className = 'kw';
+          const i = document.createElement('span'); i.className = 'kw__i';
+          i.textContent = tok; i.style.transitionDelay = (idx++ * 0.06) + 's';
+          w.appendChild(i); line.appendChild(w); line.appendChild(document.createTextNode(' '));
+        });
+      } else {
+        // keep inline element (e.g. <em>) as a single masked token
+        const w = document.createElement('span'); w.className = 'kw';
+        node.classList.add('kw__i'); node.style.transitionDelay = (idx++ * 0.06) + 's';
+        w.appendChild(node); line.appendChild(w);
+      }
+    });
+  };
+  if (!reduce) $$('.hero__title .line').forEach((l) => { splitWords(l); l.classList.add('kinetic'); });
+
+  /* ══════════════  SCROLL REVEAL  ══════════════ */
   const io = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
+    entries.forEach((e) => {
       if (e.isIntersecting) {
-        // stagger siblings for kinetic feel
-        setTimeout(() => e.target.classList.add('is-in'), (i % 4) * 90);
+        const sibs = Array.from(e.target.parentElement.querySelectorAll(':scope > [data-reveal]'));
+        const i = Math.max(0, sibs.indexOf(e.target));
+        e.target.style.transitionDelay = ((i % 6) * 0.08) + 's';
+        e.target.classList.add('is-in');
         io.unobserve(e.target);
       }
     });
-  }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
+  }, { threshold: 0.14, rootMargin: '0px 0px -8% 0px' });
   $$('[data-reveal]').forEach((el) => io.observe(el));
 
-  /* ── Nav: hide-on-scroll-down, condense on scroll ── */
+  /* ══════════════  SCROLL PROGRESS BAR  ══════════════ */
+  const bar = $('#progress');
+
+  /* ══════════════  NAV: hide / condense  ══════════════ */
   const nav = $('#nav');
   let lastY = 0;
-  window.addEventListener('scroll', () => {
-    const cy = window.scrollY;
-    if (nav) {
-      nav.classList.toggle('is-scrolled', cy > 40);
-      if (!nav.classList.contains('is-open')) {
-        nav.classList.toggle('is-hidden', cy > lastY && cy > 400);
-      }
-    }
-    lastY = cy;
-  }, { passive: true });
 
-  /* ── Mobile menu ── */
+  /* ══════════════  MOBILE MENU  ══════════════ */
   const burger = $('#burger');
   if (burger && nav) {
     burger.addEventListener('click', () => {
@@ -57,24 +83,23 @@
     });
     $$('.nav__links a, .nav__cta').forEach((a) =>
       a.addEventListener('click', () => {
-        nav.classList.remove('is-open');
-        burger.classList.remove('is-open');
+        nav.classList.remove('is-open'); burger.classList.remove('is-open');
         burger.setAttribute('aria-expanded', 'false');
       })
     );
   }
 
-  /* ── Toggles ── */
+  /* ══════════════  TOGGLES  ══════════════ */
   $$('[data-toggle]').forEach((t) =>
     t.addEventListener('click', () => t.classList.toggle('is-on'))
   );
 
-  /* ── Animated counters ── */
+  /* ══════════════  ANIMATED COUNTERS  ══════════════ */
   const runCount = (el) => {
     const target = parseFloat(el.dataset.count);
     const suffix = el.dataset.suffix || '';
-    if (reduce) { el.textContent = target + suffix; return; }
-    const dur = 1600, start = performance.now();
+    if (reduce) { el.textContent = target.toLocaleString() + suffix; return; }
+    const dur = 1700, start = performance.now();
     const step = (now) => {
       const p = Math.min((now - start) / dur, 1);
       const eased = 1 - Math.pow(1 - p, 3);
@@ -90,14 +115,12 @@
   }, { threshold: 0.6 });
   $$('[data-count]').forEach((el) => countIO.observe(el));
 
-  /* ── Live line chart (self-contained SVG) ── */
+  /* ══════════════  LIVE LINE CHART  ══════════════ */
   const buildChart = (wrap) => {
-    const svg = $('.chart__svg', wrap);
     const line = $('.chart__line', wrap);
     const area = $('.chart__area', wrap);
     const dot  = $('.chart__dot', wrap);
     const W = 520, H = 160, pad = 10, n = 12;
-
     const genPoints = () => {
       let v = 60;
       return Array.from({ length: n }, (_, i) => {
@@ -106,9 +129,7 @@
         return [pad + (i * (W - pad * 2)) / (n - 1), H - v];
       });
     };
-
     const toPath = (pts) => {
-      // smooth cubic through points
       let d = `M ${pts[0][0]} ${pts[0][1]}`;
       for (let i = 0; i < pts.length - 1; i++) {
         const [x0, y0] = pts[i], [x1, y1] = pts[i + 1];
@@ -117,24 +138,19 @@
       }
       return d;
     };
-
     const render = () => {
-      const pts = genPoints();
-      const d = toPath(pts);
+      const pts = genPoints(); const d = toPath(pts);
       line.setAttribute('d', d);
       area.setAttribute('d', `${d} L ${W - pad} ${H} L ${pad} ${H} Z`);
       const last = pts[pts.length - 1];
-      dot.setAttribute('cx', last[0]);
-      dot.setAttribute('cy', last[1]);
+      dot.setAttribute('cx', last[0]); dot.setAttribute('cy', last[1]);
     };
-
     render();
     const chartIO = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
-          wrap.classList.add('is-live');
-          chartIO.unobserve(e.target);
-          if (!reduce) setInterval(render, 3200); // subtle live updates
+          wrap.classList.add('is-live'); chartIO.unobserve(e.target);
+          if (!reduce) setInterval(render, 3200);
         }
       });
     }, { threshold: 0.4 });
@@ -142,41 +158,119 @@
   };
   $$('[data-chart]').forEach(buildChart);
 
-  if (reduce) return; // skip pointer-driven effects
-
-  /* ── Cursor glow trail ── */
-  const trail = $('#cursorTrail');
-  if (trail && window.matchMedia('(pointer:fine)').matches) {
-    let tx = 0, ty = 0, cx = 0, cy = 0;
-    window.addEventListener('mousemove', (e) => {
-      tx = e.clientX; ty = e.clientY; trail.style.opacity = '1';
+  /* ══════════════  SMOOTH INERTIA SCROLL (Lenis-style, native scrollTop)  ══════════════ */
+  // Keeps native scroll semantics (IO / anchors / fixed) — just eases wheel input.
+  let targetY = window.scrollY, currentY = targetY, scrolling = false, rafScroll = 0;
+  const maxScroll = () => document.documentElement.scrollHeight - window.innerHeight;
+  const scrollLoop = () => {
+    currentY = lerp(currentY, targetY, 0.11);
+    if (Math.abs(targetY - currentY) < 0.4) { currentY = targetY; scrolling = false; }
+    window.scrollTo(0, currentY);
+    if (scrolling) rafScroll = requestAnimationFrame(scrollLoop);
+  };
+  const smoothOn = fine && !reduce;
+  if (smoothOn) {
+    window.addEventListener('wheel', (e) => {
+      if (e.ctrlKey) return;                    // let pinch-zoom pass
+      e.preventDefault();
+      targetY = clamp(targetY + e.deltaY, 0, maxScroll());
+      if (!scrolling) { scrolling = true; rafScroll = requestAnimationFrame(scrollLoop); }
+    }, { passive: false });
+    // keep target synced when scrolled by other means (keyboard, scrollbar, anchor)
+    window.addEventListener('scroll', () => {
+      if (!scrolling) { targetY = currentY = window.scrollY; }
+    }, { passive: true });
+    // smooth anchor jumps
+    $$('a[href^="#"]').forEach((a) => {
+      a.addEventListener('click', (e) => {
+        const id = a.getAttribute('href');
+        if (id.length < 2) return;
+        const t = document.querySelector(id);
+        if (!t) return;
+        e.preventDefault();
+        targetY = clamp(t.getBoundingClientRect().top + window.scrollY - 90, 0, maxScroll());
+        scrolling = true; cancelAnimationFrame(rafScroll); rafScroll = requestAnimationFrame(scrollLoop);
+      });
     });
+  }
+
+  /* ══════════════  SCROLL-DRIVEN: progress · nav · parallax · aura  ══════════════ */
+  const parallax = $$('[data-speed]');
+  const blobs = $$('.aura__blob');
+  const auraWrap = $('.aura');
+  let vTarget = 0, vCurrent = 0;
+
+  const onScrollFrame = () => {
+    const s = window.scrollY;
+    const max = maxScroll() || 1;
+
+    if (bar) bar.style.transform = `scaleX(${clamp(s / max, 0, 1)})`;
+
+    if (nav) {
+      nav.classList.toggle('is-scrolled', s > 40);
+      if (!nav.classList.contains('is-open')) {
+        nav.classList.toggle('is-hidden', s > lastY && s > 480);
+      }
+    }
+
+    // multi-speed parallax
+    parallax.forEach((el) => {
+      const sp = parseFloat(el.dataset.speed) || 0;
+      el.style.transform = `translate3d(0, ${s * sp}px, 0)`;
+    });
+
+    // scroll-velocity → aura reacts (glowing trail feel)
+    vTarget = clamp((s - lastY), -60, 60);
+    lastY = s;
+  };
+
+  // continuous rAF: aura drifts with scroll velocity (glowing trail feel)
+  const ambientLoop = () => {
+    vCurrent = lerp(vCurrent, vTarget, 0.08);
+    vTarget *= 0.9;
+    if (auraWrap) auraWrap.style.transform = `translateY(${vCurrent * 1.6}px)`;
+    requestAnimationFrame(ambientLoop);
+  };
+
+  window.addEventListener('scroll', onScrollFrame, { passive: true });
+  onScrollFrame();
+  if (!reduce) ambientLoop();
+
+  if (reduce) return; // ── pointer-driven flourishes below ──
+
+  /* ══════════════  CURSOR GLOW TRAIL  ══════════════ */
+  const trail = $('#cursorTrail');
+  if (trail && fine) {
+    let tx = innerWidth / 2, ty = innerHeight / 2, cx = tx, cy = ty;
+    window.addEventListener('mousemove', (e) => { tx = e.clientX; ty = e.clientY; trail.style.opacity = '1'; });
     const loop = () => {
-      cx += (tx - cx) * 0.12; cy += (ty - cy) * 0.12;
+      cx = lerp(cx, tx, 0.14); cy = lerp(cy, ty, 0.14);
       trail.style.transform = `translate(${cx}px, ${cy}px) translate(-50%,-50%)`;
       requestAnimationFrame(loop);
     };
     loop();
   }
 
-  /* ── Card tilt on pointer ── */
-  $$('.tilt').forEach((card) => {
+  /* ══════════════  CARD TILT  ══════════════ */
+  if (fine) $$('.tilt').forEach((card) => {
     card.addEventListener('mousemove', (e) => {
       const r = card.getBoundingClientRect();
       const px = (e.clientX - r.left) / r.width - 0.5;
       const py = (e.clientY - r.top) / r.height - 0.5;
-      card.style.transform = `perspective(900px) rotateY(${px * 6}deg) rotateX(${-py * 6}deg) translateY(-4px)`;
+      card.style.transform = `perspective(900px) rotateY(${px * 6}deg) rotateX(${-py * 6}deg) translateY(-6px)`;
     });
     card.addEventListener('mouseleave', () => { card.style.transform = ''; });
   });
 
-  /* ── Parallax grid overlay on scroll (blobs keep their float keyframes) ── */
-  const grid = $('.aura__grid');
-  const hero = $('#hero');
-  window.addEventListener('scroll', () => {
-    const s = window.scrollY;
-    if (grid) grid.style.transform = `translateY(${s * 0.15}px)`;
-    if (hero && s < window.innerHeight) hero.style.setProperty('--hy', `${s * 0.2}px`);
-  }, { passive: true });
+  /* ══════════════  MAGNETIC BUTTONS  ══════════════ */
+  if (fine) $$('[data-magnetic], .btn--primary').forEach((btn) => {
+    btn.addEventListener('mousemove', (e) => {
+      const r = btn.getBoundingClientRect();
+      const mx = e.clientX - r.left - r.width / 2;
+      const my = e.clientY - r.top - r.height / 2;
+      btn.style.transform = `translate(${mx * 0.25}px, ${my * 0.35}px)`;
+    });
+    btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
+  });
 
 })();

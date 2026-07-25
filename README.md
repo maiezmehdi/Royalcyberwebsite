@@ -17,8 +17,11 @@ glassmorphism, kinetic typography, and smooth 60fps motion.
 - **Interactive Bento grid** — real-time data badges (+94% Efficiency,
   +82% Automation), the **Dimitri AI** avatar, live SVG line chart, and
   pill toggles.
-- **Motion** — scroll-reveal kinetic text, animated counters, parallax aura,
-  card 3D tilt, cursor glow trail, and a stroked keyword marquee.
+- **Motion** — smooth inertia scrolling, kinetic per-word hero reveal, a
+  scroll-progress bar, multi-speed parallax (grid + floating particles),
+  scroll-velocity-reactive aura, magnetic buttons, idle-floating badges/avatar,
+  animated counters, card 3D tilt, cursor glow trail, and a keyword marquee.
+  The intro logo draws in as sacred geometry and morphs into a liquid mesh glow.
 - **Real Royal Cyber content** — hero ("Transform Your Business with NextGen
   Digital Solutions"), technology partners (Salesforce, Azure, AWS, ServiceNow,
   …), service pillars, products/accelerators, industries, and company stats
